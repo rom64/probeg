@@ -1,0 +1,78 @@
+@import "mixins";
+html{
+  box-sizing: border-box;
+}
+*, *::before, *::after{
+  box-sizing: inherit;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+ul, li{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+h1,h2,h3,h4,h5,h6{
+  margin: 0;
+  font-family: Oswald;
+  font-size: inherit;
+}
+body{
+  min-width: 320px;
+  overflow-x: hidden;
+  position: relative;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: rem(18px);
+  margin: 0;
+  &.overflow-hidden{
+    //overflow: hidden;
+  }
+}
+.container {
+  max-width: rem(1520px);
+  margin: 0 auto;
+  padding: rem(15px);
+}
+
+section {
+  position: relative;
+}
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.title{
+  font-family: Oswald;
+  font-weight: 400;
+  font-style: normal;
+}
+input, textarea, select{
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+textarea{
+  resize: none;
+  font-weight: 400;
+  width: 100%;
+}
+.slick-dots{
+  display: flex;
+  justify-content: center;
+  margin-top: rem(32px);
+  & li button{
+    width: rem(25px);
+    height: 2px;
+    background-color: #c6c6c6;
+    margin: 0 rem(5px);
+    font-size: 0;
+  }
+}
+.slick-dots li[class="slick-active"] button {
+  background: $dark;
+}

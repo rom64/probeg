@@ -1,0 +1,44 @@
+@import "vars";
+
+//  responsive-font
+@mixin responsive-font($responsive, $min, $max: false, $fallback: false) {
+        @if $max != $min{
+        $responsive-unitless: $responsive / ($responsive - $responsive + 1);
+        $dimension: if(unit($responsive) == 'vh', 'height', 'width');
+        $min-breakpoint: $min / $responsive-unitless * 100;
+        
+        @media (max-#{$dimension}: #{$min-breakpoint}) {
+            font-size: $min;
+        }
+        
+        @if $max {
+            $max-breakpoint: $max / $responsive-unitless * 100;
+            
+            @media (min-#{$dimension}: #{$max-breakpoint}) {
+                font-size: $max;
+            }
+        }
+        
+        @if $fallback {
+            font-size: $fallback;
+        }
+        
+        font-size: $responsive;
+    }
+}
+
+//  PX to EM
+@function em($pixels, $context: map_get($body, max-font-size)) {
+    @return #{$pixels/$context}em;
+}
+
+//  PX to VW
+@function vw($target, $device-width: map_get($breakpoints,'992')) {
+    $vw-context: ($device-width*.01) * 1;
+    @return ($target/$vw-context) * 1vw;
+}
+
+//  PX to REM
+@function rem($pixels, $context: map_get($body, max-font-size)) {
+    @return #{$pixels/$context}rem;
+}
